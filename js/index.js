@@ -24,10 +24,12 @@ class Enemy {
             x: 0,
             y: 0
         }
+        /*
         this.center = {
-            x: this.position.x + this.width / 2,
-            y: this.position.y + this.height / 2
+            x: this.position.x + (this.width / 2),
+            y: this.position.y + (this.height / 2)
         }
+        */
     }
 
     draw() {
@@ -38,9 +40,11 @@ class Enemy {
     update() {
         this.draw()
 
+        var centerX = this.position.x + this.width/2
+        var centerY = this.position.y + this.height/2
         var waypoint = waypointsMap1[this.waypointIndex]
-        var yDistance = waypoint.y - this.center.y
-        var xDistance = waypoint.x - this.center.x
+        var yDistance = waypoint.y - centerY
+        var xDistance = waypoint.x - centerX
 
         if ( yDistance < 0 ) {
             this.velocity.y = -1
@@ -68,16 +72,15 @@ class Enemy {
 
         console.log()
         console.log("waypoint -> ", waypoint)
-        console.log("this.center -> ", this.center)
         console.log("yDistance -> ", yDistance)
         console.log("xDistance -> ", xDistance)
         console.log("this.position -> ", this.position)
         console.log("this.velocity -> ", this.velocity)
         console.log()
 
-        if ( Math.abs(this.center.x - waypoint.x) < 5 && Math.abs(this.center.y - waypoint.y) < 5 ) {
+        if ( Math.abs(centerX - waypoint.x) < 5 && Math.abs(centerY - waypoint.y) < 5 && this.waypointIndex < waypointsMap1.length-1) {
             this.waypointIndex++
-          }
+        }
         
         console.log("INDEX", this.waypointIndex) 
 
