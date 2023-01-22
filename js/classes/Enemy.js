@@ -5,6 +5,7 @@ class Enemy {
         this.width = 20
         this.height = 20
         this.waypointIndex = 0
+        this.speed = 0.8
         this.velocity = {
             x: 0,
             y: 0
@@ -31,17 +32,19 @@ class Enemy {
         var yDistance = waypoint.y - centerY
         var xDistance = waypoint.x - centerX
 
+       
+
         if ( yDistance < 0 ) {
-            this.velocity.y = -1
+            this.velocity.y = -this.speed
         }
         if ( yDistance > 0 ) {
-            this.velocity.y = 1
+            this.velocity.y = this.speed
         }
         if ( xDistance < 0 ) {
-            this.velocity.x = -1
+            this.velocity.x = -this.speed
         }
         if ( xDistance > 0 ) {
-            this.velocity.x = 1
+            this.velocity.x = this.speed
         }
 
 
