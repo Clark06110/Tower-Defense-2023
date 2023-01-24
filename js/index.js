@@ -7,6 +7,26 @@ canvas.height = 320
 canvasContext.fillStyle = 'white'
 canvasContext.fillRect(0, 0, canvas.width, canvas.height)
 
+const placementTowerTilesDataMap1_2D = [] 
+for (let i = 0; i < placementTowerTilesDataMap1.length; i += 30) {
+    placementTowerTilesDataMap1_2D.push(placementTowerTilesDataMap1.slice(i, i+30))
+} 
+
+const placementTiles = []
+placementTowerTilesDataMap1_2D.forEach((row, y) => {
+    row.forEach((symbol, x) => {
+        if (symbol === 56) {
+            placementTiles.push(new PlacementTile({
+                position: {
+                    x: x * 16,
+                    y: y * 16
+                }
+            }))
+        }
+    })
+})
+
+
 const mapImage = new Image()
 mapImage.onload = () => {
     animate()
@@ -32,8 +52,32 @@ function animate() {
     enemiesWave1.forEach(enemy => {
         enemy.update()
     })
+
+    placementTiles.forEach(tile => {
+        tile.update(mouse)
+    })
 }
 
+const mouse = {
+    x: undefined,
+    y: undefined
+  }
 
-
-console.log("canvas", canvasContext)
+window.addEventListener('mousemove', (event) => {
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+  
+    activeTile = null
+    for (let i = 0; i < placementTiles.length; i++) {
+      const tile = placementTiles[i]
+      if (
+        mouse.x > tile.position.x &&
+        mouse.x < tile.position.x + tile.width &&
+        mouse.y > tile.position.y &&
+        mouse.y < tile.position.y + tile.height
+      ) {
+        activeTile = tile
+        break
+      }
+    }
+})

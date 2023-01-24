@@ -58,6 +58,7 @@ class Enemy {
         // var a = Math.abs(this.center.x - waypoint.x)
         // var b = Math.abs(this.center.y - waypoint.y)
 
+        /*
         console.log()
         console.log("waypoint -> ", waypoint)
         console.log("yDistance -> ", yDistance)
@@ -65,12 +66,13 @@ class Enemy {
         console.log("this.position -> ", this.position)
         console.log("this.velocity -> ", this.velocity)
         console.log()
+        */
 
         if ( Math.abs(centerX - waypoint.x) < 5 && Math.abs(centerY - waypoint.y) < 5 && this.waypointIndex < waypointsMap1.length-1) {
             this.waypointIndex++
         }
         
-        console.log("INDEX", this.waypointIndex) 
+        // console.log("INDEX", this.waypointIndex) 
 
     }
 }
