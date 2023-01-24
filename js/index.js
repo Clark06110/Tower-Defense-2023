@@ -26,7 +26,7 @@ placementTowerTilesDataMap1_2D.forEach((row, y) => {
     })
 })
 
-
+//Coucou les filles
 const mapImage = new Image()
 mapImage.onload = () => {
     animate()
