@@ -57,6 +57,7 @@ function animate() {
         tile.update(mouse)
     })
 }
+// test
 
 const mouse = {
     x: undefined,
