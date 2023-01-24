@@ -44,6 +44,7 @@ for (let i = 0; i < 10; i++) {
 
 // const enemy1 = new Enemy({ position: { x: 50, y: 46 }})
 // const enemy2 = new Enemy({ position: { x: 0, y: 46 }})
+// test jaineko
 
 function animate() {
     requestAnimationFrame(animate)
