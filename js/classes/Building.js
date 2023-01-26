@@ -4,19 +4,13 @@ class Building {
         this.width = 16
         this.height = 16
         this.radius = 100
+        this.target
+        this.frames = 0
         this.center = {
             x: this.position.x + this.width/2,
             y: this.position.y + this.height/2
         }
-        this.projectiles = [
-            new Projectile({
-                position: {
-                    x: this.center.x,
-                    y: this.center.y
-                }, 
-                enemy: enemiesWave1[0]
-            })
-        ]
+        this.projectiles = []
     }
 
     draw() {
@@ -27,5 +21,21 @@ class Building {
         canvasContext.beginPath()
         canvasContext.arc(this.position.x+(this.width/2), this.position.y+(this.height/2), this.radius, 0, Math.PI*2)
         canvasContext.fill()
+    }
+
+    update() {
+        this.frames++
+        this.draw()
+        if (this.frames % 10 === 0 && this.target) {
+            this.projectiles.push(
+                new Projectile({
+                    position: {
+                        x: this.center.x,
+                        y: this.center.y
+                    }, 
+                    enemy: this.target
+                })
+            )
+        }
     }
 }

@@ -1,4 +1,5 @@
 class Projectile {
+
     constructor({ position = { x: 0, y: 0 }, enemy }) {
         this.position = position
         this.speed = 2
@@ -21,8 +22,8 @@ class Projectile {
         this.draw()
 
         const angle = Math.atan2(
-            enemiesWave1[0].position.y + (enemiesWave1[0].height/2) - this.position.y,
-            enemiesWave1[0].position.x + (enemiesWave1[0].width/2)  - this.position.x,
+            this.enemy.position.y + (this.enemy.height/2) - this.position.y,
+            this.enemy.position.x + (this.enemy.width/2)  - this.position.x,
         )
 
         this.velocity.x = Math.cos(angle) * this.speed
@@ -31,4 +32,5 @@ class Projectile {
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
     }
+
 }

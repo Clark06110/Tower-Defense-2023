@@ -63,22 +63,34 @@ function animate() {
     })
 
     buildings.forEach(building => {
-        building.draw()
-        building.projectiles.forEach((projectile, i) => {
-            projectile.update()
-
-            const xDifference = projectile.enemy.position.x + (projectile.enemy.width/2) - projectile.position.x
-            const yDifference = projectile.enemy.position.y + (projectile.enemy.height/2) - projectile.position.y
-
+        building.update()
+        building.target = null
+        const validEnemies = enemiesWave1.filter((enemy) => {
+            const xDifference = enemy.position.x + enemy.width/2 - building.position.x - building.width/2
+            const yDifference = enemy.position.y + enemy.height/2 - building.position.y - building.height/2
             const distance = Math.hypot(xDifference, yDifference)
+            return distance < enemy.radius/2 + building.radius
+        })
+        console.log("ennemies", validEnemies)
+        building.target = validEnemies[0]
+    
+        for (let i = building.projectiles.length - 1; i >= 0; i--) {
+            const projectile = building.projectiles[i]
+        
+            projectile.update()
+        
+            const xDifference = projectile.enemy.position.x + projectile.enemy.width/2 - projectile.position.x
+            const yDifference = projectile.enemy.position.y + projectile.enemy.height/2 - projectile.position.y
+            const distance = Math.hypot(xDifference, yDifference)
+
             if (distance < projectile.enemy.radius) {
                 building.projectiles.splice(i, 1)
             }
+        }
 
-            //console.log(distance)
-            //console.log(xDifference)
-            //console.log(yDifference)
-        })
+        //console.log(distance)
+        //console.log(xDifference)
+        //console.log(yDifference)
     })
 
     
