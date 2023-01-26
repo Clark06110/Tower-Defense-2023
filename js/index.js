@@ -64,8 +64,20 @@ function animate() {
 
     buildings.forEach(building => {
         building.draw()
-        building.projectiles.forEach(projectile => {
+        building.projectiles.forEach((projectile, i) => {
             projectile.update()
+
+            const xDifference = projectile.enemy.position.x + (projectile.enemy.width/2) - projectile.position.x
+            const yDifference = projectile.enemy.position.y + (projectile.enemy.height/2) - projectile.position.y
+
+            const distance = Math.hypot(xDifference, yDifference)
+            if (distance < projectile.enemy.radius) {
+                building.projectiles.splice(i, 1)
+            }
+
+            //console.log(distance)
+            //console.log(xDifference)
+            //console.log(yDifference)
         })
     })
 

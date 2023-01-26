@@ -6,6 +6,7 @@ class Enemy {
         this.height = 20
         this.waypointIndex = 0
         this.speed = 0.8
+        this.radius = 15
         this.velocity = {
             x: 0,
             y: 0
