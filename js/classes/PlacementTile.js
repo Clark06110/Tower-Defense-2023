@@ -4,7 +4,7 @@ class PlacementTile {
         this.width = 16
         this.height = 16
         this.color = 'rgba(255, 255, 255, 0.15)'
-        this.occupied = false
+        this.isOccupied = false
     }
 
     draw() {
@@ -23,7 +23,7 @@ class PlacementTile {
         ) {
           this.color = 'white'
         } else {
-          console.log("colliding")
+          // console.log("colliding")
           this.color = 'rgba(255, 255, 255, 0.15)'
         }
       }

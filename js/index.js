@@ -62,9 +62,14 @@ function animate() {
         tile.update(mouse)
     })
 
-    buildings. forEach(building => {
+    buildings.forEach(building => {
         building.draw()
+        building.projectiles.forEach(projectile => {
+            projectile.update()
+        })
     })
+
+    
 }
 // test
 
@@ -74,7 +79,7 @@ const mouse = {
 }
 
 canvas.addEventListener('click', (event) => {
-    if (activeTile /*&& !activeTile.isOccupied && coins - 50 >= 0*/) {
+    if (activeTile && !activeTile.isOccupied /*&& coins - 50 >= 0*/) {
         //coins -= 50
         //document.querySelector('#coins').innerHTML = coins
         buildings.push(
@@ -85,12 +90,13 @@ canvas.addEventListener('click', (event) => {
             }
         })
         )
-        /*
         activeTile.isOccupied = true
+        /*
         buildings.sort((a, b) => {
         return a.position.y - b.position.y
         })
         */
+       console.log("building")
     }
 })
 
