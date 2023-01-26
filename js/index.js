@@ -46,6 +46,10 @@ for (let i = 0; i < 10; i++) {
 // const enemy2 = new Enemy({ position: { x: 0, y: 46 }})
 // test jaineko
 
+const buildings = []
+let activeTile = undefined
+
+
 function animate() {
     requestAnimationFrame(animate)
 
@@ -57,13 +61,38 @@ function animate() {
     placementTiles.forEach(tile => {
         tile.update(mouse)
     })
+
+    buildings. forEach(building => {
+        building.draw()
+    })
 }
 // test
 
 const mouse = {
     x: undefined,
     y: undefined
-  }
+}
+
+canvas.addEventListener('click', (event) => {
+    if (activeTile /*&& !activeTile.isOccupied && coins - 50 >= 0*/) {
+        //coins -= 50
+        //document.querySelector('#coins').innerHTML = coins
+        buildings.push(
+        new Building({
+            position: {
+            x: activeTile.position.x,
+            y: activeTile.position.y
+            }
+        })
+        )
+        /*
+        activeTile.isOccupied = true
+        buildings.sort((a, b) => {
+        return a.position.y - b.position.y
+        })
+        */
+    }
+})
 
 window.addEventListener('mousemove', (event) => {
     mouse.x = event.clientX
