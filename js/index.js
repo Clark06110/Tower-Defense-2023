@@ -92,8 +92,12 @@ function animate() {
                     const enemyIndex = enemiesWave1.findIndex((enemy) => {
                         return projectile.enemy === enemy
                     })
-                    console.log("enemyIndex", enemyIndex)
-                    enemiesWave1.splice(enemyIndex, 1)
+                    
+                    if (enemyIndex !== -1) {
+                        console.log("enemyIndex", enemyIndex)
+                        enemiesWave1.splice(enemyIndex, 1)
+                    }
+                    
                 }
                 building.projectiles.splice(i, 1)
             }
