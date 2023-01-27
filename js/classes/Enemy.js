@@ -11,6 +11,7 @@ class Enemy {
             x: 0,
             y: 0
         }
+        this.health = 100
         /*
         this.center = {
             x: this.position.x + (this.width / 2),
@@ -22,6 +23,12 @@ class Enemy {
     draw() {
         canvasContext.fillStyle = 'red'
         canvasContext.fillRect(this.position.x, this.position.y, this.width, this.height)
+
+        canvasContext.fillStyle = 'red'
+        canvasContext.fillRect(this.position.x, this.position.y-10, this.width, 4)
+
+        canvasContext.fillStyle = 'green'
+        canvasContext.fillRect(this.position.x, this.position.y-10, this.width * (this.health/100), 4)
     }
 
     update() {

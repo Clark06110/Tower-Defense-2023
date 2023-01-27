@@ -71,7 +71,7 @@ function animate() {
             const distance = Math.hypot(xDifference, yDifference)
             return distance < enemy.radius/2 + building.radius
         })
-        console.log("ennemies", validEnemies)
+        // console.log("ennemies", validEnemies)
         building.target = validEnemies[0]
     
         for (let i = building.projectiles.length - 1; i >= 0; i--) {
@@ -83,7 +83,18 @@ function animate() {
             const yDifference = projectile.enemy.position.y + projectile.enemy.height/2 - projectile.position.y
             const distance = Math.hypot(xDifference, yDifference)
 
+            // When projectile hit
             if (distance < projectile.enemy.radius) {
+                projectile.enemy.health -= 5
+
+                // kill enemy
+                if (projectile.enemy.health <= 0) {
+                    const enemyIndex = enemiesWave1.findIndex((enemy) => {
+                        return projectile.enemy === enemy
+                    })
+                    console.log("enemyIndex", enemyIndex)
+                    enemiesWave1.splice(enemyIndex, 1)
+                }
                 building.projectiles.splice(i, 1)
             }
         }
